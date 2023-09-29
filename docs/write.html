@@ -13,7 +13,7 @@
     <script type="module">
       import * as opentype from "/dist/opentype.module.js";
 
-      const fontFileName = "fonts/FiraSansMedium.woff";
+      const fontFileName = "fonts/PeignotLTStd-Demi.woff";
       const data = await fetch(fontFileName);
       const buffer = await data.arrayBuffer();
       const font = await opentype.parse(buffer);
