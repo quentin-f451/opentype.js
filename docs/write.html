@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>opentype.js</title>
+    <meta name="description" content="A JavaScript library to manipulate the letterforms of text from the browser or node.js." />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="site.css" />
+  </head>
+  <body>
+    <div class="tester tester--original">AVOTO</div>
+    <div class="tester tester--new">AVOTO</div>
+
+    <script type="module">
+      import * as opentype from "/dist/opentype.module.js";
+
+      const fontFileName = "fonts/FiraSansMedium.woff";
+      const data = await fetch(fontFileName);
+      const buffer = await data.arrayBuffer();
+      const font = await opentype.parse(buffer);
+
+      const originalGPOSTable = font.tables.gpos;
+
+      console.log("originalGPOSTable: ", originalGPOSTable);
+
+      const tables = font.toTables();
+      const newGPOSTable = tables.tables.find((i) => i.tableName === "GPOS");
+
+      console.log("newGPOSTable: ", newGPOSTable);
+
+      const newFontLT = font.toArrayBuffer();
+      const newFontParsed = opentype.parse(newFontLT);
+
+      console.log("newFontParsedGPOSTable: ", newFontParsed.tables.gpos);
+
+      const newFont = new FontFace("PeignotLTNew", newFontLT);
+      await newFont.load();
+      document.fonts.add(newFont);
+    </script>
+  </body>
+</html>

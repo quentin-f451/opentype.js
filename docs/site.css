@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'PeignotLT';
+    src: url('./fonts/PeignotLTStd-Demi.woff') format('woff');
+}
+
 body {
     font: 13px Helvetica, arial, freesans, sans-serif;
     line-height: 1.4;
@@ -296,4 +301,24 @@ span.offcurve { color: red; }
 
 .disabled {
 	color: gray;
+}
+
+
+.tester {
+  padding: 20px;
+  font-size: 20vw;
+  line-height: 1;
+  color: black;
+  -webkit-font-feature-settings: 'kern' 1;
+          font-feature-settings: 'kern' 1;
+}
+
+.tester--original {
+  font-family: 'PeignotLT';
+  font-weight: 400;
+}
+
+.tester--new {
+  font-family: 'PeignotLTNew';
+  font-weight: 400;
 }
